@@ -9,8 +9,9 @@ import com.bumptech.glide.Glide
 import com.yudahendriawan.secondsubmissionfundamentalandroid.databinding.ItemSearchUserBinding
 import com.yudahendriawan.secondsubmissionfundamentalandroid.model.SearchItemUsers
 import com.yudahendriawan.secondsubmissionfundamentalandroid.ui.DetailUserActivity
+import com.yudahendriawan.secondsubmissionfundamentalandroid.ui.DetailUserActivity.Companion.TYPE_VIEW
 
-class SearchUsersAdapter(private val context: Activity, private val users: List<SearchItemUsers>) :
+class SearchUsersAdapter(private val context: Activity, private val users: List<SearchItemUsers>, private val type: String) :
     RecyclerView.Adapter<SearchUsersAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemSearchUserBinding) :
@@ -24,7 +25,8 @@ class SearchUsersAdapter(private val context: Activity, private val users: List<
                 .into(binding.imageUser)
             binding.root.setOnClickListener {
                 val intent = Intent(context, DetailUserActivity::class.java)
-                intent.putExtra(DetailUserActivity.USERNAME, item.login)
+                intent.putExtra(DetailUserActivity.USERNAME, item)
+                intent.putExtra(TYPE_VIEW, type)
                 context.startActivity(intent)
             }
         }

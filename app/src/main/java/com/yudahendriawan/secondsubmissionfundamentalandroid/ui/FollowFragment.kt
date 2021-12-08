@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yudahendriawan.secondsubmissionfundamentalandroid.R
 import com.yudahendriawan.secondsubmissionfundamentalandroid.adapter.FollowAdapter
+import com.yudahendriawan.secondsubmissionfundamentalandroid.adapter.ReposAdapter
 import com.yudahendriawan.secondsubmissionfundamentalandroid.databinding.FragmentFollowBinding
 import com.yudahendriawan.secondsubmissionfundamentalandroid.model.FollowUserResponseItem
+import com.yudahendriawan.secondsubmissionfundamentalandroid.model.ReposResponse
 import com.yudahendriawan.secondsubmissionfundamentalandroid.viewmodel.DetailViewModel
 
 class FollowFragment : Fragment() {
@@ -66,6 +67,10 @@ class FollowFragment : Fragment() {
             setDataFollow(it)
         })
 
+        viewModel.userRepos.observe(viewLifecycleOwner, {
+            setDataRepos(it)
+        })
+
         viewModel.isLoading.observe(viewLifecycleOwner, {
             binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         })
@@ -76,9 +81,15 @@ class FollowFragment : Fragment() {
             }
         }
 
-        if (index == 2) {
+        if (index == 3) {
             if (username != null) {
                 viewModel.getUserFollowing(username)
+            }
+        }
+
+        if (index == 2) {
+            if (username != null) {
+                viewModel.getUserRepos(username)
             }
         }
 
@@ -86,6 +97,11 @@ class FollowFragment : Fragment() {
 
     private fun setDataFollow(user: List<FollowUserResponseItem>) {
         val adapter = FollowAdapter(requireActivity(), user)
+        binding.recyclerview.adapter = adapter
+    }
+
+    private fun setDataRepos(user: List<ReposResponse>) {
+        val adapter = ReposAdapter(user)
         binding.recyclerview.adapter = adapter
     }
 

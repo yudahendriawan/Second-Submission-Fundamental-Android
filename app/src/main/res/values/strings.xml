@@ -4,4 +4,16 @@
     <string name="text_tab_2">Following</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="company">Company</string>
+    <string name="location">Location</string>
+    <string name="text_link">https://www.github.com/yudahendriawan</string>
+    <string name="text_name">Yuda Hendriawan</string>
+    <string name="tools_username">yudahendrian</string>
+    <string name="followers">Followers</string>
+    <string name="repositories">Repositories</string>
+    <string name="following">Following</string>
+    <string name="tab_repo">Repositories</string>
+    <string name="favorites">Favorites</string>
+    <string name="remove_from_favorites">Remove favorites</string>
+    <string name="activate_dark_mode">Activate Dark Mode</string>
 </resources>

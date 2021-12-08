@@ -5,24 +5,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.yudahendriawan.secondsubmissionfundamentalandroid.databinding.ItemReposBinding
 import com.yudahendriawan.secondsubmissionfundamentalandroid.databinding.ItemSearchUserBinding
 import com.yudahendriawan.secondsubmissionfundamentalandroid.model.FollowUserResponseItem
+import com.yudahendriawan.secondsubmissionfundamentalandroid.model.ReposResponse
 
-class  FollowAdapter(
-    private val context: Activity,
-    private val followers: List<FollowUserResponseItem>
+class ReposAdapter(
+    private val followers: List<ReposResponse>
 ) :
-    RecyclerView.Adapter<FollowAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ReposAdapter.ViewHolder>() {
 
-    inner class ViewHolder(private val binding: ItemSearchUserBinding) :
+    inner class ViewHolder(private val binding: ItemReposBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FollowUserResponseItem) {
-            binding.tvUsername.text = item.login
+        fun bind(item: ReposResponse) {
+            binding.tvUsername.text = item.name
             binding.tvLinkGithub.text = item.htmlUrl
-            Glide.with(context)
-                .load(item.avatarUrl)
-                .centerCrop()
-                .into(binding.imageUser)
             binding.root.isClickable = false
             binding.root.isFocusable = false
         }
@@ -30,7 +27,7 @@ class  FollowAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            ItemSearchUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemReposBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
